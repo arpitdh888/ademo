@@ -8,7 +8,7 @@ LABEL maintainer="arpitdhiman900@gmail.com"
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy your custom HTML content into the nginx directory
-COPY ./html /usr/share/nginx/html
+COPY index.html /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
