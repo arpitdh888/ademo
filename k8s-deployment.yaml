@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ademo_app
+  labels:
+    app: ademo_app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ademo_app
+  template:
+    metadata:
+      labels:
+        app: ademo_app
+    spec:
+      containers:
+        - name: ademo_app
+          image: adhiman888/test_app:1791
+          ports:
+            - containerPort: 80
+          env:
+            - name: ENV
+              value: "production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ademo_app-services
+spec:
+  selector:
+    app: ademo_app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
